@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg-primary: #EAEFF2;
+  --card-white: #FFFFFF;
+  --border-subtle: #CBD5E1;
+  --text-navy: #0F172A;
+  --alert-red: #DC2626;
+  --success-green: #10B981;
+  --scan-line: #22D3EE;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-navy);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 3px;
+}
+
+/* Scanning laser animation */
+@keyframes scanLaser {
+  0% { top: 0%; }
+  50% { top: 95%; }
+  100% { top: 0%; }
+}
+
+.scan-laser {
+  animation: scanLaser 2.5s ease-in-out infinite;
+}
+
+/* Grid overlay for camera */
+.camera-grid {
+  background-image:
+    linear-gradient(rgba(34,211,238,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,211,238,0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glowing text */
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 8px rgba(16,185,129,0.6), 0 0 20px rgba(16,185,129,0.3); }
+  50% { text-shadow: 0 0 16px rgba(16,185,129,0.9), 0 0 40px rgba(16,185,129,0.5); }
+}
+
+.glow-green {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Red glow for alerts */
+@keyframes glowRed {
+  0%, 100% { box-shadow: 0 0 10px rgba(220,38,38,0.4), 0 0 30px rgba(220,38,38,0.2); }
+  50% { box-shadow: 0 0 20px rgba(220,38,38,0.7), 0 0 50px rgba(220,38,38,0.4); }
+}
+
+.glow-red {
+  animation: glowRed 1.5s ease-in-out infinite;
+}
+
+/* Face mesh animation */
+@keyframes meshPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.mesh-pulse {
+  animation: meshPulse 1.5s ease-in-out infinite;
+}
+
+/* Circular gauge */
+.gauge-circle {
+  transition: stroke-dashoffset 1.5s ease-in-out;
+}
+
+/* Step indicator */
+@keyframes stepPing {
+  0% { transform: scale(1); opacity: 1; }
+  75% { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.step-ping {
+  animation: stepPing 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Corner bracket for camera viewport */
+.corner-bracket {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+.corner-bracket.tl { top: 8px; left: 8px; border-top: 2px solid #22D3EE; border-left: 2px solid #22D3EE; }
+.corner-bracket.tr { top: 8px; right: 8px; border-top: 2px solid #22D3EE; border-right: 2px solid #22D3EE; }
+.corner-bracket.bl { bottom: 8px; left: 8px; border-bottom: 2px solid #22D3EE; border-left: 2px solid #22D3EE; }
+.corner-bracket.br { bottom: 8px; right: 8px; border-bottom: 2px solid #22D3EE; border-right: 2px solid #22D3EE; }
+
+/* Progress bar shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.progress-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Data extraction text animation */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.blink-cursor::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: #22D3EE;
+}
