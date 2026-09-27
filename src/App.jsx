@@ -5,6 +5,7 @@ import {
   AlertTriangle, ShieldCheck, HelpCircle
 } from 'lucide-react';
 import Header from './components/Header';
+import LoginPage from './components/LoginPage';
 import PassportScan from './components/PassportScan';
 import NationalIdScan from './components/NationalIdScan';
 import DrivingLicenseScan from './components/DrivingLicenseScan';
@@ -27,6 +28,7 @@ const slideVariants = {
 };
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [riskMode, setRiskMode] = useState('low'); // 'low', 'medium', 'high'
@@ -72,6 +74,10 @@ export default function App() {
     'FACE DETECTION',
     'THREAT ASSESSMENT',
   ];
+
+  if (!isAuthenticated) {
+    return <LoginPage onLogin={() => setIsAuthenticated(true)} />;
+  }
 
   return (
     <div className="min-h-screen bg-[#EAEFF2] flex flex-col">
